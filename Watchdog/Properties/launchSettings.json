@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Watchdog": {
+      "commandName": "Project",
+      "commandLineArgs": "-p TestyTest.exe --ram-limit 5mb"
+    }
+  }
+}
