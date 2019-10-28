@@ -13,9 +13,6 @@ namespace Watchdog
         [Option('a', HelpText = "Arguments to launch process with.", Default = null)]
         public string Arguments { get; }
 
-        [Option('r', HelpText = "Restart application automatically if it crashes.", Default = false)]
-        public bool RestartOnCrash { get; }
-
         [Option("ram-limit", HelpText = "Max amount of ram (private bytes) application can allocate before being restarted. Examples: 100mb, 1024Kb.", Default = null)]
         public string RamLimit { get; }
 
@@ -28,11 +25,10 @@ namespace Watchdog
         [Option("restart-interval-seconds", Default = 0, HelpText = "If set, causes watchdog to force-restart application every x seconds. If 0, feature is disabled.")]
         public int RestartIntervalSeconds { get; }
 
-        public Settings(string filename, string arguments, bool restartOnCrash, string ramLimit, LogLevel loggingLevel, int checkIntervalSeconds, int restartIntervalSeconds)
+        public Settings(string filename, string arguments, string ramLimit, LogLevel loggingLevel, int checkIntervalSeconds, int restartIntervalSeconds)
         {
             Filename             = filename;
             Arguments            = arguments;
-            RestartOnCrash       = restartOnCrash;
             RamLimit             = ramLimit;
             LoggingLevel         = loggingLevel;
             CheckIntervalSeconds = checkIntervalSeconds;

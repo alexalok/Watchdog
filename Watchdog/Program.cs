@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using ByteSizeLib;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
@@ -13,7 +14,7 @@ namespace Watchdog
     {
         static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             var settings = ParseSettings(args);
@@ -21,10 +22,7 @@ namespace Watchdog
             var container = BootstrapContainer(settings);
 
             var controller = container.Resolve<WatchDogController>();
-            controller.Start();
-
-            while (true)
-                Console.ReadLine();
+            await controller.Start();
         }
 
         static Settings ParseSettings(IEnumerable<string> args)
